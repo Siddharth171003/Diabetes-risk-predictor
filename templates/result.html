@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment Results - Diabetes Risk Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2>Your Risk Assessment Results</h2>
+        
+        {% if prediction == 'High Risk' %}
+            <div class="risk-display risk-high">
+                <h4>⚠️ Elevated Risk Detected</h4>
+                <p>Your assessment indicates a higher risk of diabetes.</p>
+            </div>
+        {% else %}
+            <div class="risk-display risk-low">
+                <h4>✅ Lower Risk Indicated</h4>
+                <p>Your assessment suggests a lower risk of diabetes.</p>
+            </div>
+        {% endif %}
+        
+        <h3 style="margin: 1.5rem 0;">Risk Probability: {{ risk_percentage }}%</h3>
+        
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ risk_percentage }}%">
+                {{ risk_percentage }}%
+            </div>
+        </div>
+        
+        <p style="text-align: center; color: #666; margin-top: 1rem;">
+            Model Confidence: {{ confidence }}%
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Your Health Data Summary</h5>
+        <div class="input-summary">
+            <p><strong>Glucose Level:</strong> {{ user_data[0] }} mg/dL</p>
+            <p><strong>Blood Pressure:</strong> {{ user_data[1] }} mm Hg</p>
+            <p><strong>Skin Thickness:</strong> {{ user_data[2] }} mm</p>
+            <p><strong>Insulin Level:</strong> {{ user_data[3] }} mu U/ml</p>
+            <p><strong>BMI:</strong> {{ user_data[4] }}</p>
+            <p><strong>Family History:</strong> {{ user_data[5] }}</p>
+            <p><strong>Age:</strong> {{ user_data[6] }} years</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Important Medical Disclaimer</h5>
+        <p style="text-align: center;">This prediction is for informational purposes only and should not replace professional medical advice. Please consult with a healthcare professional for proper medical evaluation.</p>
+    </div>
+</div>
+
+<div class="navigation-buttons">
+    <a href="{{ url_for('predict') }}" class="btn btn-primary">New Assessment</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Dashboard</a>
+</div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Prediction for {{ patient.name }}{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>Risk Prediction for {{ patient.name }}</h2>
+  <p><strong>Phone:</strong> {{ patient.phone }}</p>
+  <p><strong>Email:</strong> {{ patient.email }}</p>
+
+  <!-- New: Display the input values used for prediction -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Input Measurements</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Glucose: {{ patient.glucose }}</li>
+        <li class="list-group-item">Blood Pressure: {{ patient.blood_pressure }}</li>
+        <li class="list-group-item">Skin Thickness: {{ patient.skin_thickness }}</li>
+        <li class="list-group-item">Insulin: {{ patient.insulin }}</li>
+        <li class="list-group-item">BMI: {{ patient.bmi }}</li>
+        <li class="list-group-item">Diabetes Pedigree Function: {{ patient.diabetes_pedigree }}</li>
+        <li class="list-group-item">Age: {{ patient.age }}</li>
+      </ul>
+    </div>
+  </div>
+
+  {% if result %}
+    <div class="alert alert-{{ 'danger' if result.prediction == 'High Risk' else 'success' }}">
+      <h4>{{ result.prediction }}</h4>
+      <p>Risk Probability: {{ result.risk_percentage }}%</p>
+      <p>Model Confidence: {{ result.confidence }}%</p>
+    </div>
+  {% else %}
+    <div class="alert alert-danger">Error running prediction.</div>
+  {% endif %}
+
+  <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-secondary mt-3">Back to Patients</a>
+</div>
+{% endblock %}

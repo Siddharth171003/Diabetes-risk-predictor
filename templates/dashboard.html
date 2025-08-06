@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Diabetes Risk Predictor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2>Welcome, {{ current_user.username }}!</h2>
+        <p class="lead">Your personal diabetes risk assessment dashboard</p>
+        
+        <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg">
+            🩺 Start Health Assessment
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Your Account Information</h5>
+        <div class="input-summary">
+            <p><strong>Username:</strong> {{ current_user.username }}</p>
+            <p><strong>Email:</strong> {{ current_user.email }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">About Our AI Model</h5>
+        <p style="text-align: center;">Our model analyzes a comprehensive set of 7 key health factors, along with 7 additional engineered features, to provide an accurate prediction of diabetes risk. This tool is designed to empower you with valuable health insights, enabling you to make proactive and informed decisions about your well-being.</p>
+    </div>
+</div>
+{% endblock %}

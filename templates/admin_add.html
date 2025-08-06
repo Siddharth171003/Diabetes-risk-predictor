@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Admin – Add Patient{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>Add Patient</h2>
+  <form id="admin-add-form" method="post" novalidate>
+
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input id="name" name="name" type="text" class="form-control" required
+            pattern="^[A-Za-z ]{3,}$">
+      <div class="error-message text-danger mt-1" id="name-error"></div>
+    </div>
+
+    <!-- Phone -->
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input id="phone" name="phone" type="tel" class="form-control" required
+            pattern="^\d{10,15}$">
+      <div class="error-message text-danger mt-1" id="phone-error"></div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" name="email" type="email" class="form-control" required>
+      <div class="error-message text-danger mt-1" id="email-error"></div>
+    </div>
+
+    <!-- Health measurements fields for prediction -->
+    <div class="mb-3">
+      <label for="glucose" class="form-label">Glucose Level (50–190 mg/dL)</label>
+      <input id="glucose" name="glucose" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="blood_pressure" class="form-label">Blood Pressure (60–120 mm Hg)</label>
+      <input id="blood_pressure" name="blood_pressure" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="skin_thickness" class="form-label">Skin Thickness (10–50 mm)</label>
+      <input id="skin_thickness" name="skin_thickness" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="insulin" class="form-label">Insulin Level (15–300 mu U/ml)</label>
+      <input id="insulin" name="insulin" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="bmi" class="form-label">BMI (18.5–45.0 kg/m²)</label>
+      <input id="bmi" name="bmi" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="diabetes_pedigree" class="form-label">Diabetes Pedigree Function </label>
+      <input id="diabetes_pedigree" name="diabetes_pedigree" type="number" step="any" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="age" class="form-label">Age</label>
+      <input id="age" name="age" type="number" min = "1" step="1" class="form-control" required>
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Admin – Patient List{% endblock %}
+{% block content %}
+<div class="container">
+  <h2>Patient List</h2>
+  <a href="{{ url_for('admin.add_patient') }}" class="btn btn-primary mb-3">Add Patient</a>
+  {% if patients %}
+    <ul class="list-group">
+      {% for p in patients %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ p.name }}</strong> | {{ p.phone }} | {{ p.email }}
+          </div>
+          <a href="{{ url_for('admin.predict_patient', patient_id=p._id) }}"
+             class="btn btn-sm btn-success">
+            Predict Risk
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No patients added yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

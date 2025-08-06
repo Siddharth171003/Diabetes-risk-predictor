@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Register – Diabetes Risk Predictor{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Create Your Account</h2>
+
+<form id="register-form" method="post" class="row g-3" novalidate>
+
+  <div class="col-md-6">
+    <label class="form-label" for="username">Username</label>
+    <input class="form-control" id="username" name="username" required>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label" for="email">Email</label>
+    <input class="form-control" id="email" name="email" type="email" required>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label" for="password">Password</label>
+    <!-- Password (at least 8 chars, one capital, one digit, one special char) -->
+    <input class="form-control" id="password" name="password" type="password"
+      required minlength="8" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$"
+      title="Password must be at least 8 characters, with uppercase, number, special character.">
+  </div>
+   <div class="col-md-6">
+    <label class="form-label" for="confirm password">Confirm Password</label>
+    <!-- Confirm Password -->
+    <input class="form-control" id="confirm_password" name="confirm_password" type="password"
+      required title="Please re-enter your password.">
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+  </div>
+  <div class="col-12">
+  <p> 
+    Already have an account <a href="{{ url_for('auth.login') }}" class="text-primary fw-bold">Login In</a>
+  </p>
+</div>
+
+</form>
+{% endblock %}
