@@ -5,7 +5,9 @@ pymongo==4.5.0
 scikit-learn>=1.4.0
 pandas>=2.1.0
 numpy>=1.25.0
+xgboost>=1.7.0
 python-dotenv==1.0.0
 Werkzeug==2.3.7
 gunicorn==21.2.0
 requests>=2.31.0
+bson==0.5.10
