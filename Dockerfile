@@ -8,14 +8,14 @@ ENV PYTHONUNBUFFERED 1
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Copy requirements and install (with timeout and reliable mirror)
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt -i https://pypi.org/simple
 
-# Copy all files
+# Copy the entire app
 COPY . .
 
-# Expose port
+# Expose Flask port
 EXPOSE 5000
 
 # Run the Flask app
